@@ -1,5 +1,5 @@
-QA Interview Test
-====================
+QA Exercise QUnit Tests
+=======================
 
 The index.html has been developed against the specification below. Using QUnit in javascript produce some tests to demonstrate the correctness of the solution and highlight any errors.
 
