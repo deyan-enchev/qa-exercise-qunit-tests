@@ -11,5 +11,7 @@ The easiest way to run an http server from OSX is ```python -m SimpleHTTPServer 
 * When changing the risk status to approved, the approval date should be set to today's date.
 * The approval date should not be in the past.
 
+The following repo should be forked, commited and pushed into your own repostitory.
+
 Be prepared to discuss your solution and explain how you approached devising a test plan.
 What other issues did you find with the webpage?

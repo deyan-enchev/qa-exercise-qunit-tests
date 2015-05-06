@@ -16,13 +16,10 @@ module("QA Tests", {
 });
 
 test('When the page is loaded, I should see a form', function(){
-  //var iframe = $('#myFrame')
-
   ok($("#form", iframe.contents()).is(":visible"), "when the page is loaded");
 });
 
 test('When I click save with empty fields, I should get an error', function() {
-  //var iframe = $('#myFrame')
   $("#form", iframe.contents()).submit()
 
   stop();
@@ -32,5 +29,4 @@ test('When I click save with empty fields, I should get an error', function() {
 
     start();
   }, 1000);
-
 });
