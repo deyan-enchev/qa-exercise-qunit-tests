@@ -1,9 +1,15 @@
 QA Interview Test
 ====================
 
-The index.html has been developed against the specification below. Using QUnit in javascript produce some tests to demonstrate the correctness of the solution and highlight any errors. You can run test-runner.html in the browser to run the tests.
+The index.html has been developed against the specification below. Using QUnit in javascript produce some tests to demonstrate the correctness of the solution and highlight any errors.
 
-The easiest way to run an http server from OSX is ```python -m SimpleHTTPServer 8000``` from the command line and then going to http://localhost:8000/test-runner.html in your browser
+There are currently two example tests in tests.js. Please add additional tests here.
+
+You can run test-runner.html in the browser to run the tests.
+
+The easiest way to run an http server from OSX or if you have python installed is ```python -m SimpleHTTPServer 8000``` from the command line and then going to http://localhost:8000/test-runner.html in your browser.
+
+You can view the actually web page at http://localhost:8000
 
 * A user should be able to fill in all the fields and save a risk.
 * They should be informed that either the save was successful or a validation error occured.

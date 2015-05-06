@@ -1,155 +1,148 @@
 ﻿<!DOCTYPE html>
-
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>QA Interview Test</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QA Exercise QUnit Tests</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
-    <style>
-        body {
-      padding-top: 60px;
-    }
-    .starter-template {
-      padding: 40px 15px;
-      text-align: center;
-    }
-    </style>
+  <style>
+      body {
+    padding-top: 60px;
+  }
+  .starter-template {
+    padding: 40px 15px;
+    text-align: center;
+  }
+  </style>
 </head>
 <body>
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">QA Interview Test</a>
-        </div>
+  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">QA Exercise QUnit Tests</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="active"><a href="#test" role="tab" data-toggle="tab">Test</a></li>
+      <li><a href="#instructions" role="tab" data-toggle="tab">Instructions</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div class="tab-pane" id="instructions">
+        <h1 class="text-muted">QA Exercise QUnit Tests</h1>
+
+        <p>The index.html has been developed against the specification below.</p>
+        <p>Using QUnit in javascript produce some tests to demonstrate the correctness of the solution and highlight any errors.</p>
+        <p>There are currently two example tests in tests.js. Please add additional tests here.</p>
+        <p>You can run test-runner.html in the browser to run the tests</p>
+        <p>You must be serving the files from a http server</p>
+        <p>The easiest way to run an http server from OSX is ```python -m SimpleHTTPServer 8000``` from the command line and then going to http://localhost:8000/test-runner.html in your browser</p>
+        <p>You can view the actually web page at http://localhost:8000</p>
+
+        <ul>
+          <li>A user should be able to fill in all the fields and save a risk without error.</li>
+          <li>They should be informed that either the save was successful or a validation error occured.</li>
+          <li>All fields are mandatory</li>
+          <li>When changing the risk status to approved, the approval date should be set to today's date.</li>
+          <li>The approval date is not permitted to be in the past.</li>
+        </ul>
+
+        <p>The following repo should be forked, commited and pushed into your own repostitory.</p>
+        <p>Be prepared to discuss your solution and explain how you approached devising a test plan.</p>
+        <p>What other issues did you find with the webpage?</p>
+      </div>
+
+      <div class="tab-pane active" id="test">
+        <h1>Details</h1>
+
+        <form id="form">
+          <div class="form-group" id="titleGroup">
+            <label for="inputEmail">Title</label>
+            <input type="text" class="form-control" id="RiskTitle">
+          </div>
+
+          <div class="form-group" id="statusGroup">
+            <label for="status">Status</label>
+            <select class="form-control" id="status">
+              <option>Open</option>
+              <option>Closed</option>
+              <option>Rejected</option>
+              <option>Approved</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="dateGroup">
+            <label class="control-label" for="inputPassword">Approval Date</label>
+            <input type="date" class="form-control" id="approvalDate">
+          </div>
+
+          <div class="form-group" id="ownerGroup">
+            <label class="control-label" for="owner">Owner (email)</label>
+            <input type="email" class="form-control" id="owner">
+          </div>
+
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+
+        <br />
+
+        <div class="alert alert-success alert-dismissible hidden" role="alert"><strong>Risk Saved!</strong></div>
+
+        <div class="alert alert-danger alert-dismissible hidden" role="alert"><strong>Error!</strong> There were errors in your form.</div>
       </div>
     </div>
 
-    <div class="container">
+    <div id="riskForm">
+  </div><!-- /.container -->
 
-        <ul class="nav nav-tabs" role="tablist">
-          <li class="active"><a href="#test" role="tab" data-toggle="tab">Test</a></li>
-          <li><a href="#instructions" role="tab" data-toggle="tab">Instructions</a></li>
-        </ul>
+  <script src="http://code.jquery.com/jquery-git1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <div class="tab-pane" id="instructions">
-                <h1 class="text-muted">QA Interview Test</h1>
+  <script>
+    $(document).ready(function(){
+      $('#instructionsLink').click(function(){});
+      $('#testLink').click(function(){});
 
-                <p>The index.html has been developed against the specification below.</p>
-                <p>Using QUnit in javascript produce some tests to demonstrate the correctness of the solution and highlight any errors.</p>
-                <p>You can run test-runner.html in the browser to run the tests</p>
-                <p>You must be serving the files from a http server</p>
-                <p>The easiest way to run an http server from OSX is ```python -m SimpleHTTPServer 8000``` from the command line and then going to http://localhost:8000/test-runner.html in your browser</p>
+      $('select#status').on('change', function(){
+        if(this.value == "Approved"){
+          var today = new Date();
+          var dateString = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+          $('#approvalDate').val(dateString);
+        }
+      });
 
-                <ul>
-                    <li>A user should be able to fill in all the fields and save a risk without error.</li>
-                    <li>They should be informed that either the save was successful or a validation error occured.</li>
-                    <li>All fields are mandatory</li>
-                    <li>When changing the risk status to approved, the approval date should be set to today's date.</li>
-                    <li>The approval date is not permitted to be in the past.</li>
-                </ul>
+      $("#form").submit(function(){
 
-                <p>The following repo should be forked, commited and pushed into your own repostitory.</p>
-                <p>Be prepared to discuss your solution and explain how you approached devising a test plan.</p>
-                <p>What other issues did you find with the webpage?</p>
+        $('.has-error').removeClass('has-error');
+        $('.alert').removeClass('hidden').addClass('hidden');
 
-            </div>
-            <div class="tab-pane active" id="test">
-                <h1>Details</h1>
+        var valid = true;
 
-            <form id="form">
-                <div class="form-group" id="titleGroup">
-                    <label for="inputEmail">Title</label>
-                    <input type="text" class="form-control" id="RiskTitle">
+        if($('#approvalDate').val() === ""){
+          valid = false;
+          $('#dateGroup').addClass("has-error");
+        }
 
-                </div>
+        if($('#RiskTitle').val() === ""){
+          valid = false;
+          $('#titleGroup').addClass("has-error");
+        }
 
-                <div class="form-group" id="statusGroup">
-                    <label for="status">Status</label>
-                    <select class="form-control" id="status">
-                        <option>Open</option>
-                        <option>Closed</option>
-                        <option>Rejected</option>
-                        <option>Approved</option>
-                    </select>
-                </div>
-
-                    <div class="form-group" id="dateGroup">
-                        <label class="control-label" for="inputPassword">Approval Date</label>
-                        <input type="date" class="form-control" id="approvalDate">
-                    </div>
-
-                    <div class="form-group" id="ownerGroup">
-                        <label class="control-label" for="owner">Owner (email)</label>
-                        <input type="email" class="form-control" id="owner">
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </form>
-                <br />
-
-
-                <div class="alert alert-success alert-dismissible hidden" role="alert"><strong>Risk Saved!</strong></div>
-
-                <div class="alert alert-danger alert-dismissible hidden" role="alert"><strong>Error!</strong> There were errors in your form.</div>
-            </div>
-        </div>
-
-        <div id="riskForm">
-
-
-
-    </div><!-- /.container -->
-
-    <script src="http://code.jquery.com/jquery-git1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-
-            $('#instructionsLink').click(function () {
-
-            });
-            $('#testLink').click(function () {
-
-            });
-
-            $('select#status').on('change', function () {
-                if (this.value == "Approved") {
-                    var today = new Date();
-                    var dateString = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-                    $('#approvalDate').val(dateString);
-                }
-            });
-
-            $("#form").submit(function () {
-
-                $('.has-error').removeClass('has-error');
-                $('.alert').removeClass('hidden').addClass('hidden');
-                var valid = true;
-
-                if ($('#approvalDate').val() == "") {
-                    valid = false;
-                    $('#dateGroup').addClass("has-error");
-                }
-
-                if ($('#RiskTitle').val() == "") {
-                    valid = false;
-                    $('#titleGroup').addClass("has-error");
-                }
-
-                if (valid) {
-                    $('.alert-success').removeClass('hidden');
-                } else {
-                    $('.alert-danger').removeClass('hidden');
-                }
-                return false;
-            });
-        });
-    </script>
+        if(valid){
+          $('.alert-success').removeClass('hidden');
+        } else {
+          $('.alert-danger').removeClass('hidden');
+        }
+        return false;
+      });
+    });
+  </script>
 </body>
 </html>
