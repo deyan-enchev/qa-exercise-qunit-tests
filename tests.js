@@ -70,7 +70,7 @@ test('Check how the "approval date" element handles date insert', function (asse
 	assert.deepEqual("1984/03/16", iframe.find("#approvalDate").val(), "Approval Date element handles insert");
 });
 
-// Checking the drop down for proper values - array of objects
+// Checking the drop down for proper values - array of objects. Using two approaches
 test('When you check the drop down items', function (assert) {
 	var options = $('#myFrame').contents().find("#status option");
 	assert.equal('Open', options[0].innerHTML);
